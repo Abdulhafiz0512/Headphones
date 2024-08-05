@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-const initialState = {
+ const initialState = {
   colors: [],
   brands: [],
   products: [],
@@ -19,16 +19,20 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedColors: state.selectedColors.includes(action.payload)
-          ? state.selectedColors.filter((color) => color !== action.payload)
+          ? state.selectedColors.filter(color => color !== action.payload)
           : [...state.selectedColors, action.payload],
       };
     case "TOGGLE_BRAND":
       return {
         ...state,
         selectedBrands: state.selectedBrands.includes(action.payload)
-          ? state.selectedBrands.filter((brand) => brand !== action.payload)
+          ? state.selectedBrands.filter(brand => brand !== action.payload)
           : [...state.selectedBrands, action.payload],
       };
+    case "RESET_COLORS":
+        return {...state, selectedColors:[]}
+    case "RESET_BRANDS":
+        return {...state, selectedBrands:[]}
     default:
       return state;
   }
