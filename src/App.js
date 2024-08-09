@@ -3,31 +3,35 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ProductList from "./components/ProductList";
 import "./App.css";
-import { AppContext, AppProvider } from "./reducer";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setColors, toggleColor, setBrands, setProducts, toggleBrand, resetColors, resetBrands } from './store/headphonesSlice';
 
 
 
-const AppContent = () => {
-  const { state, dispatch } = useContext(AppContext);
+
+const App = () => {
+  const dispatch =useDispatch()
+  // const { state, dispatch } = useContext(AppContext);
   const [sortBy, setSortBy] = useState("")
   
   useEffect(() => {
     fetch("https://headphones-server.onrender.com/colors")
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: "SET_COLORS", payload: data });
+        dispatch(setColors(data));
       });
 
     fetch("https://headphones-server.onrender.com/brands")
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: "SET_BRANDS", payload: data });
+        dispatch(setBrands(data));
       });
 
     fetch("https://headphones-server.onrender.com/products")
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: "SET_PRODUCTS", payload: data });
+        dispatch(setProducts(data));
       });
   }, [dispatch]);
   
@@ -42,10 +46,6 @@ const AppContent = () => {
   );
 };
 
-const App = () => (
-  <AppProvider>
-    <AppContent />
-  </AppProvider>
-);
+
 
 export default App;
