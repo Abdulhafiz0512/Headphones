@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { resetBrands, resetColors, toggleColor, toggleBrand } from "../store/headphonesSlice";
