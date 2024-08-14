@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const ProductList = ({ sortBy }) => {
   const products = useSelector(state => state.headphones.products);
   const dispatch = useDispatch();
-
+  const cartItems =useSelector(state=> state.cart.cartItems)
   const selectedColors = useSelector(state => state.headphones.selectedColors);
   const selectedBrands = useSelector(state => state.headphones.selectedBrands);
 
@@ -51,7 +51,7 @@ const ProductList = ({ sortBy }) => {
                 ></div>
               ))}
             </div>
-            <button className="add-to-cart-button" onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
+            <button className="add-to-cart-button" onClick={() => dispatch(addToCart(product))} disabled={cartItems.some(item => item.id === product.id)}>Add to Cart</button>
           </div>
         ))}
       </div>

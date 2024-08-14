@@ -12,7 +12,7 @@ const Header = ({sortBy, setSortBy}) => {
   return (
     <header>
       <Link to="/"><div className="logo">Logo</div></Link>
-      
+      <div className="flex-row">
       <select name="price" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value=""></option>
         <option value="cheap">Cheap</option>
@@ -22,10 +22,12 @@ const Header = ({sortBy, setSortBy}) => {
       <div className="cart">
         
           <i className="fa fa-shopping-cart" style={{color:"#007BFF", marginRight:"10px"}}></i>
-          <span className="cart-count">{cartCount}</span>
+          {cartCount!=0?<span className="cart-count">{cartCount}</span>: <span></span>}
         
       </div>
+      
       </Link>
+      </div>
     </header>
   );
 };

@@ -37,7 +37,6 @@ const App = () => {
       <div className="app-container">
         <Header sortBy={sortBy} setSortBy={setSortBy} />
         <Routes>
-          {/* Define a route for the homepage */}
           <Route
             path="/"
             element={
@@ -47,7 +46,6 @@ const App = () => {
               </div>
             }
           />
-          {/* Define a route for the cart */}
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
